@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+        function save() {
+            // Function to save the note as a file
+            var wtw = document.getElementById("textarea").value;
+            var fs = require('fs');
+            fs.writeFile('note.txt', wtw, function (err) {
+                if (err) throw err;
+            });
+        }
+        // Get the contents of the saved note and write to the textarea
+        function getNote() {
+            fs = require('fs')
+            fs.readFile('note.txt', 'utf8', function (err,data) {
+                if (err) {
+                    return console.log(err);
+                }
+                document.getElementById('textarea').value = data;
+            });
+        }
+        // Since we have a custom cloase button we need a custom close function
+		function c() {
+		const remote = require('electron').remote
+		let w = remote.getCurrentWindow();
+        save();
+		setTimeout('close()', 500);
+		}
+        // Since we have a custom minimize button we need a custom minimize function
+		function m() {
+		const remote = require('electron').remote
+		var window = remote.getCurrentWindow();
+		window.minimize();
+		}
+		</script>
+	</head>
+	<body onload="getNote()">
+        <div id="drag"><p></p></div>
+        <button id="close" onclick="c()" onmouseover="document.getElementById('close').style.background = '#d63346'" onmouseout="document.getElementById('close').style.background = 'transparent'">X</button>
+        <button id="minimize" onclick="m()" onmouseover="document.getElementById('minimize').style.background = '#f98e3b'" onmouseout="document.getElementById('minimize').style.background = 'transparent'"><hr id="minimizehr" color="black" width="8px"></button>
+        <textarea id="textarea"></textarea>
+	</body>
+	<style>
+	#close {
+		position: absolute;
+		left: 94%;
+        margin-top: -10px;
+		background: transparent;
+		border: none;
+		width: 25px;
+		height: 25px;
+		font-weight: 1000;
+		font-family: Arial;
+		color: black;
+		outline: none;
+	}
+	#minimize {
+		position: absolute;
+		left: 85%;
+        margin-top: -10px;
+		background: transparent;
+		border: none;
+		width: 25px;
+		height: 25px;
+		font-weight: 1000;
+		font-family: Arial;
+		color: black;
+		outline: none;
+	}
+    body {
+        position: relative;
+        overflow: hidden;
+        background: #FFFACD;
+    }
+    #drag {
+        position: fixed;
+        -webkit-app-region: drag;
+        width: 84%;
+    }
+    textarea {
+        margin-top: 15px;
+        width: 100%;
+        height: 100vh;
+        margin-left: -3px;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        font-family: Arial;
+    }
+	</style>
+</html>
