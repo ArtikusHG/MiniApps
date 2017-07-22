@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+        // Get the date
+        function putDate() {
+        // Declare t as new Date
+        var t = new Date;
+        // Declare d as the current day
+        var d = t.getDay();
+        // Declare y as the year
+        var y = t.getFullYear();
+        // Declare m as the current month
+        var m = t.getMonth() + 1;
+        // Declare mn as the month name
+        var mn = "nothing";
+        if (m == 1) {
+            mn = "January";
+        }
+        if (m == 2) {
+            mn = "February";
+        }
+        if (m == 3) {
+            mn = "March";
+        }
+        if (m == 4) {
+            mn = "April";
+        }
+        if (m == 5) {
+            mn = "May";
+        }
+        if (m == 6) {
+            mn = "June";
+        }
+        if (m == 7) {
+            mn = "July";
+        }
+        if (m == 8) {
+            mn = "August";
+        }
+        if (m == 9) {
+            mn = "September";
+        }
+        if (m == 10) {
+            mn = "October";
+        }
+        if (m == 11) {
+            mn = "November";
+        }
+        if (m == 12) {
+            mn = "December";
+        }
+        // Put everything we need to #date
+        document.getElementById("date").innerHTML = "It's " + mn + " " + d + ", " + y;
+        }
+        // Add a random quote after the date
+        function quote() {
+        var i = Math.floor(Math.random() * 3);
+        var g = null;
+        if (i == 0) {
+            g = "Hope it'll be a great day!";
+        }
+        if (i == 1) {
+            g = "Hope you do something great today!";
+        }
+        if (i == 2) {
+            g = "It's time to begin this day!";
+        }
+        document.getElementById('quote').innerHTML = g;
+        }
+        // Since we have a custom close button we need a custom close function
+		function c() {
+		const remote = require('electron').remote;
+		let w = remote.getCurrentWindow();
+		close();
+		}
+        // Since we have a custom minimize button we need a custom minimize function
+		function m() {
+		const remote = require('electron').remote;
+		var window = remote.getCurrentWindow();
+		window.minimize();
+		}
+		</script>
+	</head>
+	<body onload="putDate();quote()">
+        <div id="drag"><p></p></div>
+        <button id="close" onclick="c()" onmouseover="document.getElementById('close').style.background = '#d63346'" onmouseout="document.getElementById('close').style.background = 'transparent'">X</button>
+        <button id="minimize" onclick="m()" onmouseover="document.getElementById('minimize').style.background = '#f98e3b'" onmouseout="document.getElementById('minimize').style.background = 'transparent'"><hr id="minimizehr" color="black" width="8px"></button>
+        <br><br><br><br><br><br><br><br><br>
+        <h1 id="date"></h1>
+        <h2 id="quote"></h2>
+	</body>
+	<style>
+	#close {
+		position: absolute;
+		left: 94%;
+        margin-top: -10px;
+		background: transparent;
+		border: none;
+		width: 25px;
+		height: 25px;
+		font-weight: 1000;
+		font-family: Arial;
+		color: black;
+		outline: none;
+	}
+	#minimize {
+		position: absolute;
+		left: 85%;
+        margin-top: -10px;
+		background: transparent;
+		border: none;
+		width: 25px;
+		height: 25px;
+		font-weight: 1000;
+		font-family: Arial;
+		color: black;
+		outline: none;
+	}
+    body {
+        position: relative;
+        overflow: hidden;
+        background: lightBlue;
+    }
+    #drag {
+        position: fixed;
+        -webkit-app-region: drag;
+        width: 84%;
+    }
+    #date, #quote {
+        color: white;
+        font-family: Arial;
+        font-weight: 100;
+        text-align: center;
+    }
+	</style>
+</html>

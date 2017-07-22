@@ -1,0 +1,15 @@
+{
+  "name": "date",
+  "version": "1.0.0",
+  "description": "A simple application to know the date. Made in electron.",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^1.6.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "ArtikusHG",
+  "license": "MIT"
+}
