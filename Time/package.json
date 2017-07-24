@@ -1,0 +1,14 @@
+{
+  "name": "time",
+  "version": "1.0.0",
+  "description": "A simple time app made in electron.",
+  "main": "main.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "author": "ArtikusHG",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.6.11"
+  }
+}

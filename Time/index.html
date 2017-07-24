@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+				// Function to make the : disappear and appear between miutes and hours
+				function twoPointsFunc() {
+					setTimeout("document.getElementById('t').style.color = 'white'", 700);
+					setTimeout('document.getElementById("t").style.color = "transparent"', 1400);
+					setTimeout('twoPointsFunc()', 1400);
+				}
+				// Get the time
+				function putTime() {
+					// Declare t as new date
+					var t = new Date;
+					// Declare h as hours
+					var h = t.getHours();
+					// Declare m as minutes
+					var m = t.getMinutes();
+					// Add 0 in front of numbers
+					if (m < 10) {
+						m = "0" + t.getMinutes();
+					}
+					if (h < 10) {
+						h = "0" + t.getHours();
+					}
+					document.getElementById("h").innerHTML = h;
+					document.getElementById("m").innerHTML = m;
+					setTimeout('putTime()', 1000);
+
+				}
+        // Add a random quote after the time
+        function quote() {
+        var i = Math.floor(Math.random() * 3);
+        var g = null;
+        if (i == 0) {
+            g = "Don't waste your time.";
+        }
+        if (i == 1) {
+            g = "Time is limited.";
+        }
+        if (i == 2) {
+            g = "It's time to begin this day.";
+        }
+        document.getElementById('quote').innerHTML = g;
+        }
+        // Since we have a custom close button we need a custom close function
+		function c() {
+		const remote = require('electron').remote;
+		let w = remote.getCurrentWindow();
+		close();
+		}
+        // Since we have a custom minimize button we need a custom minimize function
+		function m() {
+		const remote = require('electron').remote;
+		var window = remote.getCurrentWindow();
+		window.minimize();
+		}
+		</script>
+	</head>
+	<body onload="putTime();quote();twoPointsFunc()">
+        <div id="drag"><p></p></div>
+        <button id="close" onclick="c()" onmouseover="document.getElementById('close').style.background = '#d63346'" onmouseout="document.getElementById('close').style.background = 'transparent'">X</button>
+        <button id="minimize" onclick="m()" onmouseover="document.getElementById('minimize').style.background = '#f98e3b'" onmouseout="document.getElementById('minimize').style.background = 'transparent'"><hr id="minimizehr" color="black" width="8px"></button>
+        <br><br><br><br><br><br><br><br><br>
+				<h1>
+        <span id="h"></span>
+				<span id="t">:</span>
+				<span id="m"></span>
+				</h1>
+        <h2 id="quote"></h2>
+	</body>
+	<style>
+	#close {
+		position: absolute;
+		left: 94%;
+    margin-top: -10px;
+		background: transparent;
+		border: none;
+		width: 25px;
+		height: 25px;
+		font-weight: 1000;
+		font-family: Arial;
+		color: black;
+		outline: none;
+	}
+	#minimize {
+		position: absolute;
+		left: 85%;
+        margin-top: -10px;
+		background: transparent;
+		border: none;
+		width: 25px;
+		height: 25px;
+		font-weight: 1000;
+		font-family: Arial;
+		color: black;
+		outline: none;
+	}
+    body {
+        position: relative;
+        overflow: hidden;
+        background: lightBlue;
+    }
+    #drag {
+        position: fixed;
+        -webkit-app-region: drag;
+        width: 84%;
+    }
+    #h, #m, #t, #quote, h1 {
+        color: white;
+        font-family: Arial;
+        font-weight: 100;
+        text-align: center;
+    }
+	</style>
+</html>
