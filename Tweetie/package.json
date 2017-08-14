@@ -1,0 +1,16 @@
+{
+  "name": "tweetie",
+  "version": "1.0.0",
+  "description": "A simple Twitter client written in electron.",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^1.6.11",
+    "electron-packager": "^8.7.2"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "ArtikusHG",
+  "license": "MIT"
+}

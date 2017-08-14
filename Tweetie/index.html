@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon" type="image/png" href="icon.png">
+		<script>
+		function c() {
+		const remote = require('electron').remote
+		let w = remote.getCurrentWindow();
+		w.close();
+		}
+		function m() {
+		const remote = require('electron').remote
+		var window = remote.getCurrentWindow();
+		window.minimize();
+		}
+		// Twitter color is #00aced
+		function checkConnection() {
+		if(navigator.onLine) {
+		document.getElementById("online").style.display = "inline";
+		} else {
+		document.getElementById("offline").style.display = "inline";
+		docuent.getElementById("drag").style.display = "inline";
+		}
+		}
+		function KeyPress(e) {
+		var evtobj = window.event? event : e
+		if (evtobj.keyCode == 87 && evtobj.ctrlKey) c();
+		if (evtobj.keyCode == 84 && evtobj.ctrlKey) document.getElementById("webview").src = "http://mobile.twitter.com/compose/tweet";
+		if (evtobj.keyCode == 78 && evtobj.ctrlKey) document.getElementById("webview").src = "http://mobile.twitter.com/notifications";
+		if (evtobj.keyCode == 68 && evtobj.ctrlKey) document.getElementById("webview").src = "http://mobile.twitter.com/messages";
+		if (evtobj.keyCode == 83 && evtobj.ctrlKey) document.getElementById("webview").src = "http://mobile.twitter.com/search";
+		}
+		document.onkeydown = KeyPress;
+		</script>
+	</head>
+	<body style="overflow:hidden;position:relative" onload="checkConnection()">
+		<div id="drag"></div>
+		<center>
+			<div id="online">
+			<button class="button" id="close" onclick="c()" onmouseover="document.getElementById('close').style.background = '#d63346'" onmouseout="document.getElementById('close').style.background = 'transparent'">X</button>
+			<button  class="button" id="minimize" onclick="m()" onmouseover="document.getElementById('minimize').style.background = '#f98e3b'" onmouseout="document.getElementById('minimize').style.background = 'transparent'"><hr id="minimizehr" color="#00aced" width="8px"></button>
+			<webview src="http://mobile.twitter.com" style="height:510px;width:318px;margin-left:-8px;" id="webview"></webview>
+			</div>
+			<div id="offline">
+				<br><br><br><br><br><br><br><br><br>
+				<img src="icon.png" height="55"><br><br>
+				<p>You're not connected to the internet.</p><br>
+				<button class="button2" onclick="c()">Close app</button><br><br>
+				<button class="button2" onclick="location.reload()">Refresh page</button>
+			</div>
+		</center>
+	</body>
+	<style>
+	#online, #offline {
+		display: none;
+	}
+	p {
+		font-family: Arial;
+		font-size: 10pt;
+		font-weight: bold;
+	}
+	#drag {
+		-webkit-app-region: drag;
+		position: absolute;
+		top: 0%;
+		left: 0%;
+		width: 80%;
+		height: 3%;
+	}
+	.button {
+		background: transparent;
+		border: none;
+		width: 25px;
+		height: 25px;
+		font-weight: 1000;
+		font-family: Arial;
+		color: #00aced;
+		position: absolute;
+		outline: none;
+	}
+	#close {
+		position: absolute;
+		left: 94%;
+		top: -1.8%;
+	}
+	#minimize {
+		position: absolute;
+		left: 85%;
+		top: -1.8%;
+	}
+	.button2 {
+		font-family: Arial;
+		background: #00aced;
+		color: white;
+		border: none;
+		border-radius: 7px;
+		outline: none;
+		width: 90px;
+		height: 30px;
+	}
+	</style>
+</html>
