@@ -1,0 +1,15 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "A simple calculator app made in electron.",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^1.7.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "ArtikusHG",
+  "license": "MIT"
+}

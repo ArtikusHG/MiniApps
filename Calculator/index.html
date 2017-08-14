@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+        function sum() {
+            var firstnbr = document.getElementById("firstnbr").value;
+            var secondnbr = document.getElementById("secondnbr").value;
+            document.getElementById("result").innerHTML = +firstnbr + +secondnbr;
+        }
+        function minus() {
+            var firstnbr = document.getElementById("firstnbr").value;
+            var secondnbr = document.getElementById("secondnbr").value;
+            document.getElementById("result").innerHTML = firstnbr - secondnbr;
+        }
+        function multiple() {
+            var firstnbr = document.getElementById("firstnbr").value;
+            var secondnbr = document.getElementById("secondnbr").value;
+            document.getElementById("result").innerHTML = firstnbr * secondnbr;
+        }
+        function divide() {
+            var firstnbr = document.getElementById("firstnbr").value;
+            var secondnbr = document.getElementById("secondnbr").value;
+            document.getElementById("result").innerHTML = firstnbr / secondnbr;
+        }
+        // Since we have a custom close button we need a custom close function
+		function c() {
+		const remote = require('electron').remote;
+		let w = remote.getCurrentWindow();
+		close();
+		}
+        // Since we have a custom minimize button we need a custom minimize function
+		function m() {
+		const remote = require('electron').remote;
+		var window = remote.getCurrentWindow();
+		window.minimize();
+		}
+		</script>
+	</head>
+	<body>
+        <div id="drag"><p></p></div>
+        <button id="close" onclick="c()" onmouseover="document.getElementById('close').style.background = '#d63346'" onmouseout="document.getElementById('close').style.background = 'transparent'">X</button>
+        <button id="minimize" onclick="m()" onmouseover="document.getElementById('minimize').style.background = '#f98e3b'" onmouseout="document.getElementById('minimize').style.background = 'transparent'"><hr id="minimizehr" color="black" width="8px"></button>
+        <center>
+        <br><br>
+        <input type="number" id="firstnbr" placeholder="1st number">
+        <input type="number" id="secondnbr" placeholder="2nd number">
+        <br><br><br>
+        <button class="option" onclick="sum()">+</button>
+        <button class="option" onclick="minus()">-</button>
+        <button class="option" onclick="multiple()">X</button>
+        <button class="option" onclick="divide()">/</button>
+        <p id="result"></p>
+        </center>
+	</body>
+	<style>
+	#close {
+		position: absolute;
+		left: 94%;
+        margin-top: -10px;
+		background: transparent;
+		border: none;
+		width: 25px;
+		height: 25px;
+		font-weight: 1000;
+		font-family: Arial;
+		color: black;
+		outline: none;
+	}
+	#minimize {
+		position: absolute;
+		left: 85%;
+        margin-top: -10px;
+		background: transparent;
+		border: none;
+		width: 25px;
+		height: 25px;
+		font-weight: 1000;
+		font-family: Arial;
+		color: black;
+		outline: none;
+	}
+    body {
+        position: relative;
+        overflow: hidden;
+        font-family; Arial;
+        font-weight: 100;
+    }
+    #drag {
+        position: fixed;
+        -webkit-app-region: drag;
+        width: 84%;
+    }
+    .option {
+        border: 0;
+        background: transparent;
+        width: 20%;
+        height: 25%;
+        font-size: 15pt;
+        outline: 0;
+    }
+    input {
+        height: 125px;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        font-size: 30pt;
+    }
+    #result {
+        font-size: 30pt;
+        font-family: Arial;
+        font-weight: 100;
+    }
+	</style>
+</html>
